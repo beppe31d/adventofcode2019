@@ -1,0 +1,23 @@
+{
+  "name": "AdventOfCode2019",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "mocha -r ts-node/register",
+    "exec": "ts-node"
+  },
+  "author": "Giuseppe Del Gaudio",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^3.6.4"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.2.3",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "install": "^0.13.0",
+    "mocha": "^6.2.2",
+    "ts-node": "^8.4.1"
+  }
+}
