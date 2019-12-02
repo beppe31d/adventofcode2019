@@ -15,3 +15,9 @@ describe('Part 1', () => {
         assert.equal(day1.totalFuel([12, 14, 1969]), 658);
     });
 });
+
+describe('Part 2', () => {
+    it('Find fuel test', () => {
+        assert.equal(day1.findFuelWithFuelMass(100756), 50346);
+    });
+});
