@@ -1,4 +1,4 @@
-import { OpCode } from './OpCode';
+import { OpCode } from '../opcode/OpCode';
 
 const opCode = new OpCode();
 const fs = require("fs");

@@ -1,4 +1,4 @@
-import { OpCode } from './OpCode';
+import { OpCode } from '../opcode/OpCode';
 import { assert } from 'chai';
 import 'mocha';
 
