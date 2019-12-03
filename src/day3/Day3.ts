@@ -1,6 +1,33 @@
 import { Point} from "./Point";
 
 export class Day3 {
+    findMinPath = (matchingPoints: Array<Point>, path1: Array<string>, path2: Array<string>): number => {
+        const points1 = this.buildPoints(path1);
+        const points2 = this.buildPoints(path2);
+
+        let minPath = null;
+        matchingPoints.forEach((point: Point) => {
+            const currentDistance = this.getDistanceInPath(point, points1) + this.getDistanceInPath(point, points2);
+            if (minPath === null || currentDistance < minPath) {
+                minPath = currentDistance;
+            }
+        });
+
+        return minPath;
+    };
+
+    getDistanceInPath = (currentPoint: Point, points: Array<Point>): number => {
+        let count = 0;
+        for (let i = 0; i < points.length; i++) {
+            count++;
+            if (points[i].equal(currentPoint) === 0) {
+                return count;
+            }
+        }
+
+        return count;
+    }
+
     findMinDistance = (matchingPoints: Array<Point>): number => {
         return this.manhattanDistance(this.findMinDistancePoint(matchingPoints), new Point(0, 0))
     };
@@ -44,7 +71,7 @@ export class Day3 {
             if (difference === 1) {
                 iterationPoints = this.getPointsBetween(currentPoint, newPoint)
             } else if (difference === -1) {
-                iterationPoints = this.getPointsBetween(newPoint, currentPoint)
+                iterationPoints = this.getPointsBetween(newPoint, currentPoint).reverse()
             }
 
             iterationPoints.slice(1).forEach((point: Point) => {

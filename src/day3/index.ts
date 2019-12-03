@@ -8,3 +8,4 @@ const day3 = new Day3();
 const matchingPoints = day3.findMatchingPoints(paths[0], paths[1]);
 console.log(day3.findMinDistance(matchingPoints));
 
+console.log(day3.findMinPath(matchingPoints, paths[0], paths[1]));
