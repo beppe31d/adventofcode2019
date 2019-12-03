@@ -1,13 +1,13 @@
 import { Point} from "./Point";
 
 export class Day3 {
-    findMinDistance = (path1: Array<string>, path2: Array<string>): number => {
-        return this.manhattanDistance(this.findMinDistancePoint(path1, path2), new Point(0, 0))
+    findMinDistance = (matchingPoints: Array<Point>): number => {
+        return this.manhattanDistance(this.findMinDistancePoint(matchingPoints), new Point(0, 0))
     };
 
-    findMinDistancePoint = (path1: Array<string>, path2: Array<string>): Point => {
+    findMinDistancePoint = (matchingPoints: Array<Point>): Point => {
         const basePoint = new Point(0, 0);
-        return this.findMatchingPoints(path1, path2).reduce((previousValue, currentValue) => {
+        return matchingPoints.reduce((previousValue, currentValue) => {
             if (previousValue === null ||
                 this.manhattanDistance(previousValue, basePoint) > this.manhattanDistance(currentValue, basePoint)) {
                 return currentValue;
