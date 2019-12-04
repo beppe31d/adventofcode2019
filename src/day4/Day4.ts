@@ -2,7 +2,14 @@ export class Day4 {
     findAllPasswords = (min: number, max: number): Array<string> => {
         return this.buildConsecutiveCodes(6)
             .filter((item: string): boolean => {
-                return this.notUniqueChars(item) && parseInt(item) >= min && parseInt(item) <= max;
+                return parseInt(item) >= min && parseInt(item) <= max && this.notUniqueChars(item);
+            })
+    }
+
+    findAllPasswordsWithAdjacentChars = (min: number, max: number): Array<string> => {
+        return this.buildConsecutiveCodes(6)
+            .filter((item: string): boolean => {
+                return parseInt(item) >= min && parseInt(item) <= max && this.hasOnlyTwoAdjacentChars(item);
             })
     }
 
@@ -10,6 +17,30 @@ export class Day4 {
         for (let i = 1; i < value.length; i++) {
             if (value.charAt(i) === value.charAt(i - 1)) {
                 return true
+            }
+        }
+
+        return false;
+    }
+
+    hasOnlyTwoAdjacentChars = (value: string): boolean => {
+        for (let i = 1; i < value.length; i++) {
+            if (value.charAt(i) === value.charAt(i - 1)) {
+                let adjacentCount = 2;
+                let newIndex = i
+                for (let j = i + 1; j < value.length; j++) {
+                    newIndex = j
+                    if (value.charAt(i) === value.charAt(j)) {
+                        adjacentCount++;
+                    } else {
+                        break;
+                    }
+                }
+
+                if (adjacentCount === 2) {
+                    return true;
+                }
+                i = newIndex
             }
         }
 
