@@ -1,4 +1,6 @@
+import {OpCodeSet} from "../OpCodeSet";
+
 export interface InstructionInterface {
     increment: number;
-    operation: (states:Array<string>, index:number) => Array<string>
+    operation: (opCodeSet: OpCodeSet, index:number) => OpCodeSet
 }

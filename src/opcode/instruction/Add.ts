@@ -1,10 +1,12 @@
 import { InstructionInterface} from './InstructionInterface'
+import {OpCodeSet} from "../OpCodeSet";
 
 export class Add implements InstructionInterface{
     increment = 4;
-    operation = function(states:Array<string>, index:number): Array<string>  {
+    operation = function(opCodeSet: OpCodeSet, index:number): OpCodeSet  {
+        let states = opCodeSet.states;
         states[states[index + 3]] = parseInt(states[states[index + 1]]) + parseInt(states[states[index + 2]]);
 
-        return states;
+        return { states, input: opCodeSet.input, output: opCodeSet.output };
     }
 }

@@ -8,7 +8,7 @@ let initialStates = file.toString().split(",");
 let states = initialStates.map((item) => item);
 states[1] = "12";
 states[2] = "2";
-let result = opCode.calculate(states);
+let result = opCode.calculate(states, 0).states;
 
 console.log(result[0]);
 
@@ -17,8 +17,8 @@ for (let noun = 0; noun < 100; noun++) {
         states = initialStates.map((item) => item);
         states[1] = noun;
         states[2] = verb;
-        result = opCode.calculate(states);
-        if (result !== undefined && result[0] === "19690720") {
+        result = opCode.calculate(states, 0).states;
+        if (result !== undefined && parseInt(result[0]) === 19690720) {
             console.log (noun, verb);
         }
     }
