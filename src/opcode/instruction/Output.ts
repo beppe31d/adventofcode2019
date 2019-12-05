@@ -8,8 +8,9 @@ export class Output implements InstructionInterface{
     }
 
     increment = 2;
-    operation = function(opCodeSet: OpCodeSet, index:number): OpCodeSet  {
-        opCodeSet.output = opCodeSet.states[opCodeSet.states[index + 1]];
+    operation = (opCodeSet: OpCodeSet): OpCodeSet  => {
+        opCodeSet.output = opCodeSet.states[opCodeSet.states[opCodeSet.index + 1]];
+        opCodeSet.index = opCodeSet.index + this.increment;
 
         return opCodeSet;
     }

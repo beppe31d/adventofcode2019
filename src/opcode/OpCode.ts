@@ -4,12 +4,12 @@ import {OpCodeSet} from "./OpCodeSet";
 export class OpCode {
     calculate (states: Array<string>, input: number): OpCodeSet
     {
-        return this.operation({states, input, output: null}, 0);
+        return this.operation({states, input, output: null, index: 0});
     };
 
-    operation(opCodeSet: OpCodeSet, index:number): OpCodeSet
+    operation(opCodeSet: OpCodeSet): OpCodeSet
     {
-        const codeAndMode = this.extractCodeAndMode(opCodeSet.states[index]);
+        const codeAndMode = this.extractCodeAndMode(opCodeSet.states[opCodeSet.index]);
         const code = codeAndMode.code;
         if (code === 99) {
             return opCodeSet;
@@ -17,7 +17,7 @@ export class OpCode {
 
         const instruction = new InstructionFactory().create(code, codeAndMode.mode);
 
-        return this.operation(instruction.operation(opCodeSet, index), index + instruction.increment)
+        return this.operation(instruction.operation(opCodeSet))
     };
 
     private extractCodeAndMode = (state: string): {code: number, mode: string} => {

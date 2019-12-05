@@ -8,8 +8,9 @@ export class Input implements InstructionInterface{
     }
 
     increment = 2;
-    operation = (opCodeSet: OpCodeSet, index:number): OpCodeSet =>  {
-        opCodeSet.states[opCodeSet.states[index + 1]] = opCodeSet.input.toString();
+    operation = (opCodeSet: OpCodeSet): OpCodeSet =>  {
+        opCodeSet.states[opCodeSet.states[opCodeSet.index + 1]] = opCodeSet.input.toString();
+        opCodeSet.index = opCodeSet.index + this.increment;
 
         return opCodeSet;
     }
