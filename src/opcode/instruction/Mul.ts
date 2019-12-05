@@ -1,11 +1,18 @@
 import { InstructionInterface} from './InstructionInterface'
 import {OpCodeSet} from "../OpCodeSet";
 
-export class Mul implements InstructionInterface{
+export class Mul implements InstructionInterface {
+    mode: string;
+    constructor(mode: string) {
+        this.mode = mode;
+    }
+
     increment = 4;
-    operation = function(opCodeSet: OpCodeSet, index:number): OpCodeSet  {
+    operation = (opCodeSet: OpCodeSet, index:number): OpCodeSet => {
         let states = opCodeSet.states
-        states[states[index + 3]] = parseInt(states[states[index + 1]]) * parseInt(states[states[index + 2]]);
+        const firstArg = this.mode.length > 0 && parseInt(this.mode.charAt(this.mode.length - 1)) === 1 ? states[index + 1] : states[states[index + 1]];
+        const secondArg = this.mode.length > 0 && parseInt(this.mode.charAt(this.mode.length - 2)) === 1 ? states[index + 2] : states[states[index + 2]];
+        states[states[index + 3]] = (parseInt(firstArg) * parseInt(secondArg)).toString();
 
         return { states, input: opCodeSet.input, output: opCodeSet.output };
     }
