@@ -1,18 +1,20 @@
 import {InstructionFactory} from "./instruction/InstructionFactory";
 
 export class OpCode {
-    calculate (states: Array<number>): Array<number>
+    calculate (states: Array<string>): Array<string>
     {
         return this.operation(states, 0);
     };
 
-    operation(states: Array<number>, index:number): Array<number>
+    operation(states: Array<string>, index:number): Array<string>
     {
-        if (states[index] === 99) {
+        const code = parseInt(states[index]);
+        if (code === 99) {
             return states;
         }
 
-        const instruction = new InstructionFactory().create(states[index]);
+        const instruction = new InstructionFactory().create(code);
+
         return this.operation(instruction.operation(states, index), index + instruction.increment)
     };
 }

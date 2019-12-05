@@ -2,8 +2,8 @@ import { InstructionInterface} from './InstructionInterface'
 
 export class Mul implements InstructionInterface{
     increment = 4;
-    operation = function(states:Array<number>, index:number): Array<number>  {
-        states[states[index + 3]] = states[states[index + 1]] * states[states[index + 2]];
+    operation = function(states:Array<string>, index:number): Array<string>  {
+        states[states[index + 3]] = parseInt(states[states[index + 1]]) * parseInt(states[states[index + 2]]);
 
         return states;
     }

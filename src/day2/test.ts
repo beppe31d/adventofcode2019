@@ -2,7 +2,7 @@ import { OpCode } from '../opcode/OpCode';
 import { assert } from 'chai';
 import 'mocha';
 
-const prepare = (value) => value.split(",").map((val) => parseInt(val));
+const prepare = (value) => value.split(",");
 
 const opCode = new OpCode();
 describe('Part 1', () => {
