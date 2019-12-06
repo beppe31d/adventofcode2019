@@ -6,3 +6,4 @@ const file = fs.readFileSync("src/day5/input.txt");
 let initialStates = file.toString().split(",");
 
 console.log(opCode.calculate(initialStates, 1).output);
+console.log(opCode.calculate(initialStates, 5).output);
