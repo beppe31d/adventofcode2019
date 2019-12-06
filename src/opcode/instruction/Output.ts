@@ -9,7 +9,8 @@ export class Output implements InstructionInterface{
 
     increment = 2;
     operation = (opCodeSet: OpCodeSet): OpCodeSet  => {
-        opCodeSet.output = opCodeSet.states[opCodeSet.states[opCodeSet.index + 1]];
+        const firstArg = this.mode.length > 0 && parseInt(this.mode.charAt(this.mode.length - 1)) === 1 ? opCodeSet.states[opCodeSet.index + 1] : opCodeSet.states[opCodeSet.states[opCodeSet.index + 1]];
+        opCodeSet.output = parseInt(firstArg);
         opCodeSet.index = opCodeSet.index + this.increment;
 
         return opCodeSet;

@@ -17,7 +17,7 @@ export class OpCode {
 
         const instruction = new InstructionFactory().create(code, codeAndMode.mode);
 
-        return this.operation(instruction.operation(opCodeSet))
+        return this.operation(instruction.operation(opCodeSet));
     };
 
     private extractCodeAndMode = (state: string): {code: number, mode: string} => {

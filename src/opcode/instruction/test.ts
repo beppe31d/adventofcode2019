@@ -51,20 +51,20 @@ describe('Jump if false', () => {
 
 describe('Less than', () => {
     it('True test', () => {
-        assert.equal(new LessThan('11').operation({states: prepare("7,0,7,4,99"), input: 0, index: 0 }).states.join(","), "7,0,7,4,1");
+        assert.equal(new LessThan('111').operation({states: prepare("7,0,7,4,99"), input: 0, index: 0 }).states.join(","), "7,0,7,4,1");
     });
 
     it('False test', () => {
-        assert.equal(new LessThan('11').operation({states: prepare("7,11,7,4,99"), input: 0, index: 0 }).states.join(","), "7,11,7,4,0");
+        assert.equal(new LessThan('111').operation({states: prepare("7,11,7,4,99"), input: 0, index: 0 }).states.join(","), "7,11,7,4,0");
     });
 });
 
 describe('Equal to', () => {
     it('True test', () => {
-        assert.equal(new EqualTo('11').operation({states: prepare("7,0,0,4,99"), input: 0, index: 0 }).states.join(","), "7,0,0,4,1");
+        assert.equal(new EqualTo('111').operation({states: prepare("7,0,0,4,0"), input: 0, index: 0 }).states.join(","), "7,0,0,4,1");
     });
 
     it('False test', () => {
-        assert.equal(new EqualTo('11').operation({states: prepare("7,11,7,4,99"), input: 0, index: 0 }).states.join(","), "7,11,7,4,0");
+        assert.equal(new EqualTo('111').operation({states: prepare("7,11,7,4,0"), input: 0, index: 0 }).states.join(","), "7,11,7,4,0");
     });
 });
