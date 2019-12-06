@@ -5,5 +5,8 @@ const fs = require("fs");
 const file = fs.readFileSync("src/day5/input.txt");
 let initialStates = file.toString().split(",");
 
-console.log(opCode.calculate(initialStates, 1).output);
-console.log(opCode.calculate(initialStates, 5).output);
+let states = initialStates.map((item) => item);
+console.log(opCode.calculate(states, 1).output);
+
+states = initialStates.map((item) => item);
+console.log(opCode.calculate(states, 5).output);
