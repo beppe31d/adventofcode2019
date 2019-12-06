@@ -6,3 +6,4 @@ const file = fs.readFileSync("src/day6/input.txt");
 let objects = file.toString().split("\n");
 
 console.log(uom.orbitNumber(objects));
+console.log(uom.orbitalTransfer(objects));
