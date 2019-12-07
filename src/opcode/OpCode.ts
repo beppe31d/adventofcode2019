@@ -2,7 +2,7 @@ import {InstructionFactory} from "./instruction/InstructionFactory";
 import {OpCodeSet} from "./OpCodeSet";
 
 export class OpCode {
-    calculate (states: Array<string>, input: number): OpCodeSet
+    calculate (states: Array<string>, input: Array<number>): OpCodeSet
     {
         return this.operation({states, input, output: null, index: 0});
     };
