@@ -1,4 +1,18 @@
 export class SpaceImageFormat {
+    getFinalImage = (input: string, width: number, height: number): Array<string> => {
+        const layers = this.divideLayers(input, width, height);
+
+        return layers[0].map((item: string, index: number) => {
+            for (let i = 0; i < layers.length; i++) {
+                if (parseInt(layers[i][index]) !== 2) {
+                    return layers[i][index];
+                }
+            }
+
+            return '';
+        })
+    }
+
     getDecodeNumber = (input: string, width: number, height: number): number => {
         const layer = this.getLayerWithFewestZero(input, width, height);
 

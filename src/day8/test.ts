@@ -18,3 +18,9 @@ describe('Part 1', () => {
         assert.equal(sif.getDecodeNumber("123456789012", 3, 2), 1);
     });
 });
+
+describe('Part 2', () => {
+    it('Get final image test', () => {
+        assert.equal(sif.getFinalImage("0222112222120000", 2, 2).join(""), "0110");
+    });
+});
