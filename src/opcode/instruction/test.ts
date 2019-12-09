@@ -24,6 +24,10 @@ describe('Add', () => {
     it('Result in one mode test', () => {
         assert.equal(new Add('100').operation({states: prepare("1,1,1,4,99"), input: [], index: 0 }).states.join(","), "1,1,1,2,99");
     });
+
+    it('Complex example Test', () => {
+        assert.equal(new Add('10').operation({states: prepare("109,1,204,-1,1001,100,1,100"), input: [], index: 4, relativeBase: 1 }).states.join(","), "1,1,204,-1,1001,100,1,100");
+    });
 });
 
 describe('Mul', () => {

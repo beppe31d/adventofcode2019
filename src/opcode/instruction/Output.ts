@@ -13,7 +13,14 @@ export class Output implements InstructionInterface{
         if (opCodeSet.output === undefined || opCodeSet.output === null) {
             opCodeSet.output = new Array<number>()
         }
-        opCodeSet.output.push(parseInt(opCodeSet.states[getIndexByMode(opCodeSet.states, this.mode, opCodeSet.index, 1, opCodeSet.relativeBase)]));
+        const states = opCodeSet.states
+        let indexByMode = getIndexByMode(states, this.mode, opCodeSet.index, 1, opCodeSet.relativeBase);
+        let firstArg = indexByMode >= 0 && states.length > indexByMode ? parseInt(states[indexByMode]) : 0;
+
+        if (firstArg === undefined || firstArg === null) {
+            firstArg = 0;
+        }
+        opCodeSet.output.push(firstArg);
         opCodeSet.index = opCodeSet.index + this.increment;
 
         return opCodeSet;

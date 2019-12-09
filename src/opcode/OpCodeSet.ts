@@ -3,5 +3,6 @@ export interface OpCodeSet {
     index: number,
     input: Array<number>,
     output?: Array<number>,
+    exit?: number;
     relativeBase?: number
 }

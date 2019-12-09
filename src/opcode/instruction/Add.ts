@@ -12,9 +12,14 @@ export class Add implements InstructionInterface{
     operation = (opCodeSet: OpCodeSet): OpCodeSet =>  {
         const index = opCodeSet.index;
         let states = opCodeSet.states;
-        const firstArg = parseInt(states[getIndexByMode(states, this.mode, index, 1, opCodeSet.relativeBase)]);
-        const secondArg = parseInt(states[getIndexByMode(states, this.mode, index, 2, opCodeSet.relativeBase)]);
-        const thirdArg = getIndexByMode(states, this.mode, index, 3, opCodeSet.relativeBase);
+        let indexByMode = getIndexByMode(states, this.mode, index, 1, opCodeSet.relativeBase);
+        let firstArg = indexByMode >= 0 && states.length > indexByMode ? parseInt(states[indexByMode]) : 0;
+
+        indexByMode = getIndexByMode(states, this.mode, index, 2, opCodeSet.relativeBase);
+        let secondArg = indexByMode >= 0 && states.length > indexByMode ? parseInt(states[indexByMode]) : 0;
+
+        indexByMode = getIndexByMode(states, this.mode, index, 3, opCodeSet.relativeBase);
+        let thirdArg = indexByMode >= 0 && states.length > indexByMode ? indexByMode : 0;
         states[thirdArg] = (firstArg + secondArg).toString();
 
         return { states, input: opCodeSet.input, output: opCodeSet.output, index: opCodeSet.index + this.increment};
