@@ -1,5 +1,6 @@
 import { InstructionInterface} from './InstructionInterface'
 import {OpCodeSet} from "../OpCodeSet";
+import {getIndexByMode} from "./getIndexByMode";
 
 export class JumpIfFalse implements InstructionInterface{
     mode: string;
@@ -11,11 +12,11 @@ export class JumpIfFalse implements InstructionInterface{
     operation = (opCodeSet: OpCodeSet): OpCodeSet =>  {
         const index = opCodeSet.index;
         let states = opCodeSet.states;
-        const firstArg = this.mode.length > 0 && parseInt(this.mode.charAt(this.mode.length - 1)) === 1 ? states[index + 1] : states[states[index + 1]];
-        const secondArg = this.mode.length > 0 && parseInt(this.mode.charAt(this.mode.length - 2)) === 1 ? states[index + 2] : states[states[index + 2]];
+        const firstArg = parseInt(states[getIndexByMode(states, this.mode, index, 1)]);
+        const secondArg = parseInt(states[getIndexByMode(states, this.mode, index, 2)]);
 
-        if (parseInt(firstArg) === 0) {
-            opCodeSet.index = parseInt(secondArg)
+        if (firstArg === 0) {
+            opCodeSet.index = secondArg
         } else {
             opCodeSet.index += this.increment;
         }

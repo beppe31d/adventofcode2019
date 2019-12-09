@@ -1,5 +1,6 @@
 import { InstructionInterface} from './InstructionInterface'
 import {OpCodeSet} from "../OpCodeSet";
+import {getIndexByMode} from "./getIndexByMode";
 
 export class Input implements InstructionInterface{
     mode: string;
@@ -9,7 +10,7 @@ export class Input implements InstructionInterface{
 
     increment = 2;
     operation = (opCodeSet: OpCodeSet): OpCodeSet =>  {
-        opCodeSet.states[opCodeSet.states[opCodeSet.index + 1]] = opCodeSet.input.shift().toString();
+        opCodeSet.states[getIndexByMode(opCodeSet.states, this.mode, opCodeSet.index, 1)] = opCodeSet.input.shift().toString();
         opCodeSet.index = opCodeSet.index + this.increment;
 
         return opCodeSet;

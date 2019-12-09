@@ -1,5 +1,6 @@
 import { InstructionInterface} from './InstructionInterface'
 import {OpCodeSet} from "../OpCodeSet";
+import {getIndexByMode} from "./getIndexByMode";
 
 export class Mul implements InstructionInterface {
     mode: string;
@@ -11,9 +12,10 @@ export class Mul implements InstructionInterface {
     operation = (opCodeSet: OpCodeSet): OpCodeSet => {
         const index = opCodeSet.index
         let states = opCodeSet.states
-        const firstArg = this.mode.length > 0 && parseInt(this.mode.charAt(this.mode.length - 1)) === 1 ? states[index + 1] : states[states[index + 1]];
-        const secondArg = this.mode.length > 0 && parseInt(this.mode.charAt(this.mode.length - 2)) === 1 ? states[index + 2] : states[states[index + 2]];
-        states[states[index + 3]] = (parseInt(firstArg) * parseInt(secondArg)).toString();
+        const firstArg = parseInt(states[getIndexByMode(states, this.mode, index, 1)]);
+        const secondArg = parseInt(states[getIndexByMode(states, this.mode, index, 2)]);
+        const thirdArg = getIndexByMode(states, this.mode, index, 3);
+        states[thirdArg] = (firstArg * secondArg).toString();
 
         return { states, input: opCodeSet.input, output: opCodeSet.output, index: opCodeSet.index + this.increment};
     }

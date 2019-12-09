@@ -1,5 +1,6 @@
 import { InstructionInterface} from './InstructionInterface'
 import {OpCodeSet} from "../OpCodeSet";
+import {getIndexByMode} from "./getIndexByMode";
 
 export class LessThan implements InstructionInterface{
     mode: string;
@@ -11,11 +12,11 @@ export class LessThan implements InstructionInterface{
     operation = (opCodeSet: OpCodeSet): OpCodeSet =>  {
         const index = opCodeSet.index;
         let states = opCodeSet.states;
-        const firstArg = this.mode.length > 0 && parseInt(this.mode.charAt(this.mode.length - 1)) === 1 ? states[index + 1] : states[states[index + 1]];
-        const secondArg = this.mode.length > 0 && parseInt(this.mode.charAt(this.mode.length - 2)) === 1 ? states[index + 2] : states[states[index + 2]];
-        const thirdArg = this.mode.length > 0 && parseInt(this.mode.charAt(this.mode.length - 3)) === 1 ? index + 3 : parseInt(states[index + 3]);
+        const firstArg = parseInt(states[getIndexByMode(states, this.mode, index, 1)]);
+        const secondArg = parseInt(states[getIndexByMode(states, this.mode, index, 2)]);
+        const thirdArg = getIndexByMode(states, this.mode, index, 3);
 
-        if (parseInt(firstArg) < parseInt(secondArg)) {
+        if (firstArg < secondArg) {
             states[thirdArg] = "1"
         } else {
             states[thirdArg] = "0"
