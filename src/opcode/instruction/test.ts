@@ -99,10 +99,10 @@ describe('Input', () => {
 
 describe('Output', () => {
     it('Zero mode test', () => {
-        assert.equal(new Output('').operation({states: prepare("4,2,31"), input: [], index: 0 }).output, 31);
+        assert.equal(new Output('').operation({states: prepare("4,2,31"), input: [], index: 0 }).output.shift(), 31);
     });
 
     it('Immediate mode test', () => {
-        assert.equal(new Output('1').operation({states: prepare("4,2,31"), input: [], index: 0 }).output, 2);
+        assert.equal(new Output('1').operation({states: prepare("4,2,31"), input: [], index: 0 }).output.shift(), 2);
     });
 });

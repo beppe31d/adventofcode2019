@@ -30,7 +30,7 @@ export class Amplifier {
         const opCode = new OpCode();
         const newPhases = phases.map((item) => item);
         newPhases.push(phase);
-        const newSignal = opCode.calculate(states.map((item) => item), [phase, inputSignal]).output
+        const newSignal = opCode.calculate(states.map((item) => item), [phase, inputSignal]).output.shift()
 
         return newPhases.length === amplifiers ? {signal: newSignal, phases: newPhases} :
             this.amplify(states.map((item) => item), newPhases, newSignal, amplifiers);
