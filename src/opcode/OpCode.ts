@@ -5,10 +5,9 @@ import {Output} from "./instruction/Output";
 export class OpCode {
     calculate (states: Array<string>, input: Array<number>): OpCodeSet
     {
-        let opCodeSet: OpCodeSet = {states, input, output: null, index: 0};
+        let opCodeSet: OpCodeSet = {states, input, output: null, index: 0, relativeBase: 0};
         while (opCodeSet.exit === undefined || opCodeSet.exit === null) {
             opCodeSet = this.operation(opCodeSet);
-            console.log(opCodeSet.output)
         }
 
         return opCodeSet;

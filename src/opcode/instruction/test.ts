@@ -26,7 +26,7 @@ describe('Add', () => {
     });
 
     it('Complex example Test', () => {
-        assert.equal(new Add('10').operation({states: prepare("109,1,204,-1,1001,100,1,100"), input: [], index: 4, relativeBase: 1 }).states.join(","), "1,1,204,-1,1001,100,1,100");
+        assert.equal(new Add('10').operation({states: prepare("109,1,204,-1,1001,10,1,10"), input: [], index: 4, relativeBase: 1 }).states.join(","), "109,1,204,-1,1001,10,1,10,,,1");
     });
 });
 
@@ -57,6 +57,10 @@ describe('Jump if true', () => {
 describe('Jump if false', () => {
     it('True test', () => {
         assert.equal(new JumpIfFalse('11').operation({states: prepare("6,0,7"), input: [], index: 0 }).index, 7);
+    });
+
+    it('True test zero mode', () => {
+        assert.equal(new JumpIfFalse('01').operation({states: prepare("6,0,0"), input: [], index: 0 }).index, 6);
     });
 
     it('False test', () => {

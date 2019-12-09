@@ -18,10 +18,10 @@ export class Add implements InstructionInterface{
         indexByMode = getIndexByMode(states, this.mode, index, 2, opCodeSet.relativeBase);
         let secondArg = indexByMode >= 0 && states.length > indexByMode ? parseInt(states[indexByMode]) : 0;
 
-        indexByMode = getIndexByMode(states, this.mode, index, 3, opCodeSet.relativeBase);
-        let thirdArg = indexByMode >= 0 && states.length > indexByMode ? indexByMode : 0;
-        states[thirdArg] = (firstArg + secondArg).toString();
+        let thirdArg = getIndexByMode(states, this.mode, index, 3, opCodeSet.relativeBase);
+        opCodeSet.states[thirdArg] = (firstArg + secondArg).toString();
+        opCodeSet.index += this.increment
 
-        return { states, input: opCodeSet.input, output: opCodeSet.output, index: opCodeSet.index + this.increment};
+        return opCodeSet;
     }
 }

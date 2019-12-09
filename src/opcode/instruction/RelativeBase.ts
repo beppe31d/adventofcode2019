@@ -10,9 +10,6 @@ export class RelativeBase implements InstructionInterface{
 
     increment = 2;
     operation = (opCodeSet: OpCodeSet): OpCodeSet  => {
-        if (opCodeSet.relativeBase === undefined || opCodeSet.relativeBase === null) {
-            opCodeSet.relativeBase = 0;
-        }
         const states = opCodeSet.states
         let indexByMode = getIndexByMode(states, this.mode, opCodeSet.index, 1, opCodeSet.relativeBase);
         let firstArg = indexByMode > 0 && states.length > indexByMode ? parseInt(states[indexByMode]) : 0;

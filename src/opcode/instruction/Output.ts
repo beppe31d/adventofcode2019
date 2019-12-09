@@ -17,9 +17,6 @@ export class Output implements InstructionInterface{
         let indexByMode = getIndexByMode(states, this.mode, opCodeSet.index, 1, opCodeSet.relativeBase);
         let firstArg = indexByMode >= 0 && states.length > indexByMode ? parseInt(states[indexByMode]) : 0;
 
-        if (firstArg === undefined || firstArg === null) {
-            firstArg = 0;
-        }
         opCodeSet.output.push(firstArg);
         opCodeSet.index = opCodeSet.index + this.increment;
 

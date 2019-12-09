@@ -18,15 +18,15 @@ export class LessThan implements InstructionInterface{
         indexByMode = getIndexByMode(states, this.mode, index, 2, opCodeSet.relativeBase);
         let secondArg = indexByMode >= 0 && states.length > indexByMode ? parseInt(states[indexByMode]) : 0;
 
-        indexByMode = getIndexByMode(states, this.mode, index, 3, opCodeSet.relativeBase);
-        let thirdArg = indexByMode >= 0 && states.length > indexByMode ? indexByMode : 0;
+        let thirdArg = getIndexByMode(states, this.mode, index, 3, opCodeSet.relativeBase);
 
         if (firstArg < secondArg) {
-            states[thirdArg] = "1"
+            opCodeSet.states[thirdArg] = "1"
         } else {
-            states[thirdArg] = "0"
+            opCodeSet.states[thirdArg] = "0"
         }
+        opCodeSet.index += this.increment
 
-        return { states, input: opCodeSet.input, output: opCodeSet.output, index: opCodeSet.index + this.increment};
+        return opCodeSet;
     }
 }
