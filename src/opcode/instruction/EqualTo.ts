@@ -12,9 +12,9 @@ export class EqualTo implements InstructionInterface{
     operation = (opCodeSet: OpCodeSet): OpCodeSet =>  {
         const index = opCodeSet.index;
         let states = opCodeSet.states;
-        const firstArg = parseInt(states[getIndexByMode(states, this.mode, index, 1)]);
-        const secondArg = parseInt(states[getIndexByMode(states, this.mode, index, 2)]);
-        const thirdArg = getIndexByMode(states, this.mode, index, 3);
+        const firstArg = parseInt(states[getIndexByMode(states, this.mode, index, 1, opCodeSet.relativeBase)]);
+        const secondArg = parseInt(states[getIndexByMode(states, this.mode, index, 2, opCodeSet.relativeBase)]);
+        const thirdArg = getIndexByMode(states, this.mode, index, 3, opCodeSet.relativeBase);
 
         if (firstArg === secondArg) {
             states[thirdArg] = "1"

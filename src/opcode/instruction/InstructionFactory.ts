@@ -7,6 +7,7 @@ import {JumpIfTrue} from "./JumpIfTrue";
 import {JumpIfFalse} from "./JumpIfFalse";
 import {LessThan} from "./LessThan";
 import {EqualTo} from "./EqualTo";
+import {RelativeBase} from "./RelativeBase";
 
 export class InstructionFactory {
     create = function(code: number, mode: string): InstructionInterface {
@@ -27,6 +28,8 @@ export class InstructionFactory {
                 return new LessThan(mode);
             case 8:
                 return new EqualTo(mode);
+            case 9:
+                return new RelativeBase(mode);
         }
     }
 }

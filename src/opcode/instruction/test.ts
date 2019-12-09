@@ -8,6 +8,7 @@ import {LessThan} from "./LessThan";
 import {EqualTo} from "./EqualTo";
 import {Input} from "./Input";
 import {Output} from "./Output";
+import {RelativeBase} from "./RelativeBase";
 
 const prepare = (value) => value.split(",");
 
@@ -104,5 +105,15 @@ describe('Output', () => {
 
     it('Immediate mode test', () => {
         assert.equal(new Output('1').operation({states: prepare("4,2,31"), input: [], index: 0 }).output.shift(), 2);
+    });
+
+    it('Relative mode test', () => {
+        assert.equal(new Output('2').operation({states: prepare("109,1,204,-1"), input: [], index: 2, relativeBase: 1 }).output.shift(), 109);
+    });
+});
+
+describe('Relative base', () => {
+    it('Immediate mode test', () => {
+        assert.equal(new RelativeBase('1').operation({states: prepare("109,1"), input: [], index: 0 }).relativeBase, 1);
     });
 });
